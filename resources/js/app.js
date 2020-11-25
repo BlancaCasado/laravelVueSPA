@@ -4,6 +4,9 @@ import router from './router';
 import 'bootstrap/dist/css/bootstrap.css'; // added new after above
 import 'bootstrap'; //added new after above
 
+import BootstrapVue from 'bootstrap-vue';
+Vue.use(BootstrapVue);
+
 new Vue({
     el: '#app',  // id #app from our welcome.blade.php where it will render
     router,
