@@ -11,10 +11,15 @@
     <div class="card mb-3">
       <div class="card-header d-flex">
         <span>
-            <i class="fas fa-chart-area"></i>
-            Categories Management
+          <i class="fas fa-chart-area"></i>
+          Categories Management
         </span>
-        <button class="btn btn-primary btn-sm ml-auto" v-on:click="showNewCategoryModal"><span class="fa fa-plus"></span> Create New</button>
+        <button
+          class="btn btn-primary btn-sm ml-auto"
+          v-on:click="showNewCategoryModal"
+        >
+          <span class="fa fa-plus"></span> Create New
+        </button>
       </div>
       <div class="card-body">
         <table class="table">
@@ -57,9 +62,13 @@
               id="name"
               placeholder="Enter category name"
             />
+            <div class="invalid-feedback" v-if="errors.name">{{errors.name[0]}}</div>
           </div>
           <div class="form-group">
             <label for="image">Choose an image</label>
+            <div v-if="categoryData.image.name">
+              <img src="" ref="newCategoryImageDisplay" class="w-150px" />
+            </div>
             <input
               type="file"
               v-on:change="attachImage"
@@ -67,6 +76,8 @@
               class="form-control"
               id="image"
             />
+            <div class="invalid-feedback" v-if="errors.image">{{errors.image[0]}}</div>
+
           </div>
 
           <hr />
@@ -89,29 +100,57 @@
 </template>
 
 <script>
+import * as categoryService from '../services/category_service';
 export default {
   name: "category",
   data() {
     return {
       categoryData: {
-        name: "",
-        image: "",
+        name: '',
+        image: '',
       },
+      errors: {}
     }
   },
   methods: {
     attachImage() {
-      // To use file reader TODO:
+      this.categoryData.image = this.$refs.newCategoryImage.files[0];
+      let reader = new FileReader();
+      reader.addEventListener(
+        "load",
+        function () {
+          this.$refs.newCategoryImageDisplay.src = reader.result;
+        }.bind(this),
+        false
+      );
+
+      reader.readAsDataURL(this.categoryData.image);
     },
     hideNewCategoryModal() {
-        this.$refs.newCategoryModal.hide();
+      this.$refs.newCategoryModal.hide();
     },
     showNewCategoryModal() {
-        this.$refs.newCategoryModal.show();
+      this.$refs.newCategoryModal.show();
     },
-    createCategory: async function() {
-        console.log('Form submitted');
-    },
+    createCategory: async function () {
+      let formData = new FormData();
+      formData.append("name", this.categoryData.name);
+      formData.append("image", this.categoryData.image);
+
+      try {
+        const response = await categoryService.createCategory(formData);
+        console.log(response);
+      } catch (error) {
+        switch (error.response.status) {
+          case 422:
+            this.errors = error.response.data.errors;
+            break;
+          default:
+            alert("some error occurred");
+            break;
+        }
+      }
+    }
   }
 }
 </script>
