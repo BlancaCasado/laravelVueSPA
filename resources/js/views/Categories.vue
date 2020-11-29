@@ -32,10 +32,12 @@
             </tr>
           </thead>
           <tbody>
-            <tr>
-              <td>1</td>
-              <td>Shirt</td>
-              <td>Image</td>
+            <tr v-for="(category, index) in categories" :key="index">
+              <td>{{index+1}}</td>
+              <td>{{category.name}}</td>
+              <td>
+                <img :src="`${$store.state.serverPath}/storage/${category.image}`" :alt="category.name" class="table-image" />
+              </td>
               <td>
                 <button class="btn btn-primary btn-sm">
                   <span class="fa fa-edit"></span>
@@ -105,6 +107,7 @@ export default {
   name: "category",
   data() {
     return {
+      categories: [],
       categoryData: {
         name: '',
         image: '',
@@ -112,7 +115,21 @@ export default {
       errors: {}
     }
   },
+  mounted() {
+    this.loadCategories();
+  },
   methods: {
+    loadCategories: async function() {
+      try {
+        const response = await categoryService.loadCategories();
+        this.categories = response.data.data;
+      } catch (error) {
+        this.flashMessage.error({
+          message: 'Some error occurred, Please refresh!',
+          time: 5000
+        });
+      }
+    },
     attachImage() {
       this.categoryData.image = this.$refs.newCategoryImage.files[0];
       let reader = new FileReader();
@@ -139,14 +156,22 @@ export default {
 
       try {
         const response = await categoryService.createCategory(formData);
-        console.log(response);
+        this.categories.unshift(response.data);
+        this.hideNewCategoryModal();
+        this.flashMessage.success({
+          message: 'Category stored successfully!',
+          time: 5000
+        });
       } catch (error) {
         switch (error.response.status) {
           case 422:
             this.errors = error.response.data.errors;
             break;
           default:
-            alert("some error occurred");
+            this.flashMessage.error({
+              message: 'Some error occurred, Please try again!',
+              time: 5000
+            });
             break;
         }
       }

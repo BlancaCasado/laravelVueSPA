@@ -119,11 +119,14 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
 //
 //
 //
+//
+//
 
 /* harmony default export */ __webpack_exports__["default"] = ({
   name: "category",
   data: function data() {
     return {
+      categories: [],
       categoryData: {
         name: '',
         image: ''
@@ -131,7 +134,49 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
       errors: {}
     };
   },
+  mounted: function mounted() {
+    this.loadCategories();
+  },
   methods: {
+    loadCategories: function () {
+      var _loadCategories = _asyncToGenerator( /*#__PURE__*/_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.mark(function _callee() {
+        var response;
+        return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.wrap(function _callee$(_context) {
+          while (1) {
+            switch (_context.prev = _context.next) {
+              case 0:
+                _context.prev = 0;
+                _context.next = 3;
+                return _services_category_service__WEBPACK_IMPORTED_MODULE_1__["loadCategories"]();
+
+              case 3:
+                response = _context.sent;
+                this.categories = response.data.data;
+                _context.next = 10;
+                break;
+
+              case 7:
+                _context.prev = 7;
+                _context.t0 = _context["catch"](0);
+                this.flashMessage.error({
+                  message: 'Some error occurred, Please refresh!',
+                  time: 5000
+                });
+
+              case 10:
+              case "end":
+                return _context.stop();
+            }
+          }
+        }, _callee, this, [[0, 7]]);
+      }));
+
+      function loadCategories() {
+        return _loadCategories.apply(this, arguments);
+      }
+
+      return loadCategories;
+    }(),
     attachImage: function attachImage() {
       this.categoryData.image = this.$refs.newCategoryImage.files[0];
       var reader = new FileReader();
@@ -147,46 +192,54 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
       this.$refs.newCategoryModal.show();
     },
     createCategory: function () {
-      var _createCategory = _asyncToGenerator( /*#__PURE__*/_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.mark(function _callee() {
+      var _createCategory = _asyncToGenerator( /*#__PURE__*/_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.mark(function _callee2() {
         var formData, response;
-        return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.wrap(function _callee$(_context) {
+        return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.wrap(function _callee2$(_context2) {
           while (1) {
-            switch (_context.prev = _context.next) {
+            switch (_context2.prev = _context2.next) {
               case 0:
                 formData = new FormData();
                 formData.append("name", this.categoryData.name);
                 formData.append("image", this.categoryData.image);
-                _context.prev = 3;
-                _context.next = 6;
+                _context2.prev = 3;
+                _context2.next = 6;
                 return _services_category_service__WEBPACK_IMPORTED_MODULE_1__["createCategory"](formData);
 
               case 6:
-                response = _context.sent;
-                console.log(response);
-                _context.next = 19;
+                response = _context2.sent;
+                this.categories.unshift(response.data);
+                this.hideNewCategoryModal();
+                this.flashMessage.success({
+                  message: 'Category stored successfully!',
+                  time: 5000
+                });
+                _context2.next = 21;
                 break;
 
-              case 10:
-                _context.prev = 10;
-                _context.t0 = _context["catch"](3);
-                _context.t1 = _context.t0.response.status;
-                _context.next = _context.t1 === 422 ? 15 : 17;
+              case 12:
+                _context2.prev = 12;
+                _context2.t0 = _context2["catch"](3);
+                _context2.t1 = _context2.t0.response.status;
+                _context2.next = _context2.t1 === 422 ? 17 : 19;
                 break;
-
-              case 15:
-                this.errors = _context.t0.response.data.errors;
-                return _context.abrupt("break", 19);
 
               case 17:
-                alert("some error occurred");
-                return _context.abrupt("break", 19);
+                this.errors = _context2.t0.response.data.errors;
+                return _context2.abrupt("break", 21);
 
               case 19:
+                this.flashMessage.error({
+                  message: 'Some error occurred, Please try again!',
+                  time: 5000
+                });
+                return _context2.abrupt("break", 21);
+
+              case 21:
               case "end":
-                return _context.stop();
+                return _context2.stop();
             }
           }
-        }, _callee, this, [[3, 10]]);
+        }, _callee2, this, [[3, 12]]);
       }));
 
       function createCategory() {
@@ -249,7 +302,38 @@ var render = function() {
           )
         ]),
         _vm._v(" "),
-        _vm._m(1)
+        _c("div", { staticClass: "card-body" }, [
+          _c("table", { staticClass: "table" }, [
+            _vm._m(1),
+            _vm._v(" "),
+            _c(
+              "tbody",
+              _vm._l(_vm.categories, function(category, index) {
+                return _c("tr", { key: index }, [
+                  _c("td", [_vm._v(_vm._s(index + 1))]),
+                  _vm._v(" "),
+                  _c("td", [_vm._v(_vm._s(category.name))]),
+                  _vm._v(" "),
+                  _c("td", [
+                    _c("img", {
+                      staticClass: "table-image",
+                      attrs: {
+                        src:
+                          _vm.$store.state.serverPath +
+                          "/storage/" +
+                          category.image,
+                        alt: category.name
+                      }
+                    })
+                  ]),
+                  _vm._v(" "),
+                  _vm._m(2, true)
+                ])
+              }),
+              0
+            )
+          ])
+        ])
       ]),
       _vm._v(" "),
       _c(
@@ -386,39 +470,29 @@ var staticRenderFns = [
     var _vm = this
     var _h = _vm.$createElement
     var _c = _vm._self._c || _h
-    return _c("div", { staticClass: "card-body" }, [
-      _c("table", { staticClass: "table" }, [
-        _c("thead", [
-          _c("tr", [
-            _c("td", [_vm._v("#")]),
-            _vm._v(" "),
-            _c("td", [_vm._v("Name")]),
-            _vm._v(" "),
-            _c("td", [_vm._v("Image")]),
-            _vm._v(" "),
-            _c("td", [_vm._v("Action")])
-          ])
-        ]),
+    return _c("thead", [
+      _c("tr", [
+        _c("td", [_vm._v("#")]),
         _vm._v(" "),
-        _c("tbody", [
-          _c("tr", [
-            _c("td", [_vm._v("1")]),
-            _vm._v(" "),
-            _c("td", [_vm._v("Shirt")]),
-            _vm._v(" "),
-            _c("td", [_vm._v("Image")]),
-            _vm._v(" "),
-            _c("td", [
-              _c("button", { staticClass: "btn btn-primary btn-sm" }, [
-                _c("span", { staticClass: "fa fa-edit" })
-              ]),
-              _vm._v(" "),
-              _c("button", { staticClass: "btn btn-danger btn-sm" }, [
-                _c("span", { staticClass: "fa fa-trash" })
-              ])
-            ])
-          ])
-        ])
+        _c("td", [_vm._v("Name")]),
+        _vm._v(" "),
+        _c("td", [_vm._v("Image")]),
+        _vm._v(" "),
+        _c("td", [_vm._v("Action")])
+      ])
+    ])
+  },
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("td", [
+      _c("button", { staticClass: "btn btn-primary btn-sm" }, [
+        _c("span", { staticClass: "fa fa-edit" })
+      ]),
+      _vm._v(" "),
+      _c("button", { staticClass: "btn btn-danger btn-sm" }, [
+        _c("span", { staticClass: "fa fa-trash" })
       ])
     ])
   }
@@ -433,16 +507,20 @@ render._withStripped = true
 /*!***************************************************!*\
   !*** ./resources/js/services/category_service.js ***!
   \***************************************************/
-/*! exports provided: createCategory */
+/*! exports provided: createCategory, loadCategories */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "createCategory", function() { return createCategory; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "loadCategories", function() { return loadCategories; });
 /* harmony import */ var _http_service__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./http_service */ "./resources/js/services/http_service.js");
 
 function createCategory(data) {
   return Object(_http_service__WEBPACK_IMPORTED_MODULE_0__["httpFile"])().post('/categories', data);
+}
+function loadCategories() {
+  return Object(_http_service__WEBPACK_IMPORTED_MODULE_0__["http"])().get('/categories');
 }
 
 /***/ }),
@@ -476,32 +554,6 @@ function httpFile() {
     }
   });
 }
-
-/***/ }),
-
-/***/ "./resources/js/store.js":
-/*!*******************************!*\
-  !*** ./resources/js/store.js ***!
-  \*******************************/
-/*! exports provided: default */
-/***/ (function(module, __webpack_exports__, __webpack_require__) {
-
-"use strict";
-__webpack_require__.r(__webpack_exports__);
-/* harmony import */ var vue__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! vue */ "./node_modules/vue/dist/vue.common.js");
-/* harmony import */ var vue__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(vue__WEBPACK_IMPORTED_MODULE_0__);
-/* harmony import */ var vuex__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! vuex */ "./node_modules/vuex/dist/vuex.esm.js");
-
-
-vue__WEBPACK_IMPORTED_MODULE_0___default.a.use(vuex__WEBPACK_IMPORTED_MODULE_1__["default"]);
-/* harmony default export */ __webpack_exports__["default"] = (new vuex__WEBPACK_IMPORTED_MODULE_1__["default"].Store({
-  state: {
-    apiURL: 'http://127.0.0.1:8000/api',
-    serverPath: 'http://127.0.0.1:8000'
-  },
-  mutations: {},
-  actions: {}
-}));
 
 /***/ }),
 

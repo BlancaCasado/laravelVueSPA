@@ -388,3 +388,7 @@ a.nav-link.active {
   display: inline-block !important;
 }
 
+img.table-image {
+  width: 100px;
+}
+

@@ -11,6 +11,8 @@
         <Footer />
       </div>
     </div>
+
+    <FlashMessage :position="'right top'"></FlashMessage>
   </main>
 </template>
 
