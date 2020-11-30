@@ -49,6 +49,12 @@
             </tr>
           </tbody>
         </table>
+        <div class="text-center" v-show="moreExists">
+          <button type="button" class="btn btn-primary btn-sm" v-on:click="loadMore">
+            <span class="fa fa-arrow-down"> Cargar más</span>
+          </button>
+        </div>
+        
       </div>
     </div>
 
@@ -159,6 +165,8 @@ export default {
         name: '',
         image: '',
       },
+      moreExists: false,
+      nextPage: 0,
       editCategoryData: {},
       errors: {}
     }
@@ -171,6 +179,13 @@ export default {
       try {
         const response = await categoryService.loadCategories();
         this.categories = response.data.data;
+
+        if (response.data.current_page < response.data.last_page) {
+          this.moreExists = true;
+          this.nextPage = response.data.current_page +1;
+        } else {
+          this.moreExists = false;
+        }
       } catch (error) {
         this.flashMessage.error({
           message: 'Some error occurred, Please refresh!',
@@ -281,7 +296,7 @@ export default {
         formData.append('name', this.editCategoryData.name);
         formData.append('image', this.editCategoryData.image);
         formData.append('_method', 'put');
-        
+
         const response = await categoryService.updateCategory(this.editCategoryData.id, formData);
         this.categories.map(category => {
           if (category.id == response.data.id) {
@@ -298,6 +313,26 @@ export default {
       } catch (error) {
         this.flashMessage.error({
           message: error.response.data.message,
+          time: 5000
+        });
+      }
+    },
+    loadMore: async function() {
+      try{
+        const response = await categoryService.loadMore(this.nextPage);
+        if (response.data.current_page < response.data.last_page) {
+          this.moreExists = true;
+          this.nextPage = response.data.current_page +1;
+        } else {
+          this.moreExists = false;
+        }
+
+        response.data.data.forEach(data => {
+          this.categories.push(data)
+        })
+      } catch (error) {
+        this.flashMessage.error({
+          message: 'Ha ocurrido un error cargando más categorías',
           time: 5000
         });
       }
