@@ -14,10 +14,63 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _services_category_service__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../services/category_service */ "./resources/js/services/category_service.js");
 
 
+function ownKeys(object, enumerableOnly) { var keys = Object.keys(object); if (Object.getOwnPropertySymbols) { var symbols = Object.getOwnPropertySymbols(object); if (enumerableOnly) symbols = symbols.filter(function (sym) { return Object.getOwnPropertyDescriptor(object, sym).enumerable; }); keys.push.apply(keys, symbols); } return keys; }
+
+function _objectSpread(target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i] != null ? arguments[i] : {}; if (i % 2) { ownKeys(Object(source), true).forEach(function (key) { _defineProperty(target, key, source[key]); }); } else if (Object.getOwnPropertyDescriptors) { Object.defineProperties(target, Object.getOwnPropertyDescriptors(source)); } else { ownKeys(Object(source)).forEach(function (key) { Object.defineProperty(target, key, Object.getOwnPropertyDescriptor(source, key)); }); } } return target; }
+
+function _defineProperty(obj, key, value) { if (key in obj) { Object.defineProperty(obj, key, { value: value, enumerable: true, configurable: true, writable: true }); } else { obj[key] = value; } return obj; }
+
 function asyncGeneratorStep(gen, resolve, reject, _next, _throw, key, arg) { try { var info = gen[key](arg); var value = info.value; } catch (error) { reject(error); return; } if (info.done) { resolve(value); } else { Promise.resolve(value).then(_next, _throw); } }
 
 function _asyncToGenerator(fn) { return function () { var self = this, args = arguments; return new Promise(function (resolve, reject) { var gen = fn.apply(self, args); function _next(value) { asyncGeneratorStep(gen, resolve, reject, _next, _throw, "next", value); } function _throw(err) { asyncGeneratorStep(gen, resolve, reject, _next, _throw, "throw", err); } _next(undefined); }); }; }
 
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
 //
 //
 //
@@ -131,6 +184,7 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
         name: '',
         image: ''
       },
+      editCategoryData: {},
       errors: {}
     };
   },
@@ -302,6 +356,79 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
       }
 
       return deleteCategory;
+    }(),
+    hideEditCategoryModal: function hideEditCategoryModal() {
+      this.$refs.editCategoryModal.hide();
+    },
+    showEditCategoryModal: function showEditCategoryModal() {
+      this.$refs.editCategoryModal.show();
+    },
+    editCategory: function editCategory(category) {
+      this.editCategoryData = _objectSpread({}, category);
+      this.showEditCategoryModal();
+    },
+    editAttachImage: function editAttachImage() {
+      this.editCategoryData.image = this.$refs.editCategoryImage.files[0];
+      var reader = new FileReader();
+      reader.addEventListener("load", function () {
+        this.$refs.editCategoryImageDisplay.src = reader.result;
+      }.bind(this), false);
+      reader.readAsDataURL(this.editCategoryData.image);
+    },
+    updateCategory: function () {
+      var _updateCategory = _asyncToGenerator( /*#__PURE__*/_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.mark(function _callee4() {
+        var formData, response;
+        return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.wrap(function _callee4$(_context4) {
+          while (1) {
+            switch (_context4.prev = _context4.next) {
+              case 0:
+                console.log('update called');
+                _context4.prev = 1;
+                formData = new FormData();
+                formData.append('name', this.editCategoryData.name);
+                formData.append('image', this.editCategoryData.image);
+                formData.append('_method', 'put');
+                _context4.next = 8;
+                return _services_category_service__WEBPACK_IMPORTED_MODULE_1__["updateCategory"](this.editCategoryData.id, formData);
+
+              case 8:
+                response = _context4.sent;
+                this.categories.map(function (category) {
+                  if (category.id == response.data.id) {
+                    for (var key in response.data) {
+                      category[key] = response.data[key];
+                    }
+                  }
+                });
+                this.hideEditCategoryModal();
+                this.flashMessage.success({
+                  message: 'Category updated successfully!',
+                  time: 5000
+                });
+                _context4.next = 17;
+                break;
+
+              case 14:
+                _context4.prev = 14;
+                _context4.t0 = _context4["catch"](1);
+                this.flashMessage.error({
+                  message: _context4.t0.response.data.message,
+                  time: 5000
+                });
+
+              case 17:
+              case "end":
+                return _context4.stop();
+            }
+          }
+        }, _callee4, this, [[1, 14]]);
+      }));
+
+      function updateCategory() {
+        return _updateCategory.apply(this, arguments);
+      }
+
+      return updateCategory;
     }()
   }
 });
@@ -383,7 +510,18 @@ var render = function() {
                   ]),
                   _vm._v(" "),
                   _c("td", [
-                    _vm._m(2, true),
+                    _c(
+                      "button",
+                      {
+                        staticClass: "btn btn-primary btn-sm",
+                        on: {
+                          click: function($event) {
+                            return _vm.editCategory(category)
+                          }
+                        }
+                      },
+                      [_c("span", { staticClass: "fa fa-edit" })]
+                    ),
                     _vm._v(" "),
                     _c(
                       "button",
@@ -521,6 +659,130 @@ var render = function() {
             )
           ])
         ]
+      ),
+      _vm._v(" "),
+      _c(
+        "b-modal",
+        {
+          ref: "editCategoryModal",
+          attrs: { "hide-footer": "", title: "Update Category" }
+        },
+        [
+          _c("div", { staticClass: "d-block" }, [
+            _c(
+              "form",
+              {
+                on: {
+                  submit: function($event) {
+                    $event.preventDefault()
+                    return _vm.updateCategory($event)
+                  }
+                }
+              },
+              [
+                _c("div", { staticClass: "form-group" }, [
+                  _c("label", { attrs: { for: "name" } }, [
+                    _vm._v("Enter Name")
+                  ]),
+                  _vm._v(" "),
+                  _c("input", {
+                    directives: [
+                      {
+                        name: "model",
+                        rawName: "v-model",
+                        value: _vm.editCategoryData.name,
+                        expression: "editCategoryData.name"
+                      }
+                    ],
+                    staticClass: "form-control",
+                    attrs: {
+                      type: "text",
+                      id: "name",
+                      placeholder: "Enter category name"
+                    },
+                    domProps: { value: _vm.editCategoryData.name },
+                    on: {
+                      input: function($event) {
+                        if ($event.target.composing) {
+                          return
+                        }
+                        _vm.$set(
+                          _vm.editCategoryData,
+                          "name",
+                          $event.target.value
+                        )
+                      }
+                    }
+                  }),
+                  _vm._v(" "),
+                  _vm.errors.name
+                    ? _c("div", { staticClass: "invalid-feedback" }, [
+                        _vm._v(_vm._s(_vm.errors.name[0]))
+                      ])
+                    : _vm._e()
+                ]),
+                _vm._v(" "),
+                _c("div", { staticClass: "form-group" }, [
+                  _c("label", { attrs: { for: "image" } }, [
+                    _vm._v("Choose an image")
+                  ]),
+                  _vm._v(" "),
+                  _c("div", [
+                    _c("img", {
+                      ref: "editCategoryImageDisplay",
+                      staticClass: "w-150px",
+                      attrs: {
+                        src:
+                          _vm.$store.state.serverPath +
+                          "/storage/" +
+                          _vm.editCategoryData.image
+                      }
+                    })
+                  ]),
+                  _vm._v(" "),
+                  _c("input", {
+                    ref: "editCategoryImage",
+                    staticClass: "form-control",
+                    attrs: { type: "file", id: "image" },
+                    on: { change: _vm.editAttachImage }
+                  }),
+                  _vm._v(" "),
+                  _vm.errors.image
+                    ? _c("div", { staticClass: "invalid-feedback" }, [
+                        _vm._v(_vm._s(_vm.errors.image[0]))
+                      ])
+                    : _vm._e()
+                ]),
+                _vm._v(" "),
+                _c("hr"),
+                _vm._v(" "),
+                _c("div", { staticClass: "text-right" }, [
+                  _c(
+                    "button",
+                    {
+                      staticClass: "btn btn-default",
+                      attrs: { type: "button" },
+                      on: { click: _vm.hideEditCategoryModal }
+                    },
+                    [_vm._v("\n            Cancel\n          ")]
+                  ),
+                  _vm._v(" "),
+                  _c(
+                    "button",
+                    {
+                      staticClass: "btn btn-primary",
+                      attrs: { type: "submit" }
+                    },
+                    [
+                      _c("span", { staticClass: "fa fa-check" }),
+                      _vm._v(" Save\n          ")
+                    ]
+                  )
+                ])
+              ]
+            )
+          ])
+        ]
       )
     ],
     1
@@ -551,14 +813,6 @@ var staticRenderFns = [
         _c("td", [_vm._v("Action")])
       ])
     ])
-  },
-  function() {
-    var _vm = this
-    var _h = _vm.$createElement
-    var _c = _vm._self._c || _h
-    return _c("button", { staticClass: "btn btn-primary btn-sm" }, [
-      _c("span", { staticClass: "fa fa-edit" })
-    ])
   }
 ]
 render._withStripped = true
@@ -571,7 +825,7 @@ render._withStripped = true
 /*!***************************************************!*\
   !*** ./resources/js/services/category_service.js ***!
   \***************************************************/
-/*! exports provided: createCategory, loadCategories, deleteCategory */
+/*! exports provided: createCategory, loadCategories, deleteCategory, updateCategory */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -579,6 +833,7 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "createCategory", function() { return createCategory; });
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "loadCategories", function() { return loadCategories; });
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "deleteCategory", function() { return deleteCategory; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "updateCategory", function() { return updateCategory; });
 /* harmony import */ var _http_service__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./http_service */ "./resources/js/services/http_service.js");
 
 function createCategory(data) {
@@ -589,6 +844,9 @@ function loadCategories() {
 }
 function deleteCategory(id) {
   return Object(_http_service__WEBPACK_IMPORTED_MODULE_0__["http"])()["delete"]("categories/".concat(id));
+}
+function updateCategory(id, data) {
+  return Object(_http_service__WEBPACK_IMPORTED_MODULE_0__["httpFile"])().post("categories/".concat(id), data);
 }
 
 /***/ }),

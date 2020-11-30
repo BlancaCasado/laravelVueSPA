@@ -39,7 +39,7 @@
                 <img :src="`${$store.state.serverPath}/storage/${category.image}`" :alt="category.name" class="table-image" />
               </td>
               <td>
-                <button class="btn btn-primary btn-sm">
+                <button class="btn btn-primary btn-sm" v-on:click="editCategory(category)">
                   <span class="fa fa-edit"></span>
                 </button>
                 <button class="btn btn-danger btn-sm" v-on:click="deleteCategory(category)">
@@ -98,6 +98,53 @@
         </form>
       </div>
     </b-modal>
+
+    <b-modal ref="editCategoryModal" hide-footer title="Update Category">
+      <div class="d-block">
+        <form v-on:submit.prevent="updateCategory">
+          <div class="form-group">
+            <label for="name">Enter Name</label>
+            <input
+              type="text"
+              v-model="editCategoryData.name"
+              class="form-control"
+              id="name"
+              placeholder="Enter category name"
+            />
+            <div class="invalid-feedback" v-if="errors.name">{{errors.name[0]}}</div>
+          </div>
+          <div class="form-group">
+            <label for="image">Choose an image</label>
+            <div>
+              <img :src="`${$store.state.serverPath}/storage/${editCategoryData.image}`" ref="editCategoryImageDisplay" class="w-150px" />
+            </div>
+            <input
+              type="file"
+              v-on:change="editAttachImage"
+              ref="editCategoryImage"
+              class="form-control"
+              id="image"
+            />
+            <div class="invalid-feedback" v-if="errors.image">{{errors.image[0]}}</div>
+
+          </div>
+
+          <hr />
+          <div class="text-right">
+            <button
+              type="button"
+              class="btn btn-default"
+              v-on:click="hideEditCategoryModal"
+            >
+              Cancel
+            </button>
+            <button type="submit" class="btn btn-primary">
+              <span class="fa fa-check"></span> Save
+            </button>
+          </div>
+        </form>
+      </div>
+    </b-modal>
   </div>
 </template>
 
@@ -112,6 +159,7 @@ export default {
         name: '',
         image: '',
       },
+      editCategoryData: {},
       errors: {}
     }
   },
@@ -194,6 +242,57 @@ export default {
 
         this.flashMessage.success({
           message: 'Category deleted successfully!',
+          time: 5000
+        });
+      } catch (error) {
+        this.flashMessage.error({
+          message: error.response.data.message,
+          time: 5000
+        });
+      }
+    },
+    hideEditCategoryModal() {
+      this.$refs.editCategoryModal.hide();
+    },
+    showEditCategoryModal() {
+      this.$refs.editCategoryModal.show();
+    },
+    editCategory(category) {
+      this.editCategoryData = {...category};
+      this.showEditCategoryModal();
+    },
+    editAttachImage() {
+      this.editCategoryData.image = this.$refs.editCategoryImage.files[0];
+      let reader = new FileReader();
+      reader.addEventListener(
+        "load",
+        function () {
+          this.$refs.editCategoryImageDisplay.src = reader.result;
+        }.bind(this),
+        false
+      );
+
+      reader.readAsDataURL(this.editCategoryData.image);
+    },
+    updateCategory: async function() {
+      console.log('update called');
+      try {
+        const formData = new FormData();
+        formData.append('name', this.editCategoryData.name);
+        formData.append('image', this.editCategoryData.image);
+        formData.append('_method', 'put');
+        
+        const response = await categoryService.updateCategory(this.editCategoryData.id, formData);
+        this.categories.map(category => {
+          if (category.id == response.data.id) {
+            for (let key in response.data) {
+              category[key] = response.data[key];
+            }
+          }
+        });
+        this.hideEditCategoryModal();
+        this.flashMessage.success({
+          message: 'Category updated successfully!',
           time: 5000
         });
       } catch (error) {

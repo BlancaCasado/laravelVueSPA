@@ -87,7 +87,32 @@ class CategoryController extends Controller
    */
   public function update(Request $request, Category $category)
   {
-    //
+    $request->validate([
+      'name' => 'required|min:3',
+    ]);
+
+    $category->name =$request->name;
+    $oldPath = $category->image;
+    if ($request->hasFile('image')) {
+      $request->validate([
+        'image' => 'image|mimes:jpeg,png,jpg',
+      ]);
+      
+      $path = $request->file('image')->store('categories_images');
+      $category->image =$path;
+
+      Storage::delete($oldPath);
+    } 
+
+    if ($category->save()) {
+      return response()->json($category, 200);
+    } else {
+      Storage::delete($path);
+      return response()->json([
+        'message' => 'Some error occurred, Please try agian!',
+        'status_code' => 500
+      ], 500);
+    }
   }
 
   /**
