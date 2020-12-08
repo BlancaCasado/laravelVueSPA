@@ -11,7 +11,7 @@
     <li class="nav-item">
       <router-link to="/categories" class="nav-link" exact>
         <i class="fas fa-fw fa-chart-area"></i>
-        <span> Categories</span>
+        <span> Categorías</span>
       </router-link>
     </li>
   </ul>

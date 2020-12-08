@@ -1,0 +1,4 @@
+	"name": "prueba",
+	"email": "prueba@gmail.com",
+	"password": "prueba",
+	"password_confirmation": "prueba"

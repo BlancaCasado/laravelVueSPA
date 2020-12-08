@@ -5,20 +5,20 @@
       <li class="breadcrumb-item">
         <router-link to="/">Dashboard</router-link>
       </li>
-      <li class="breadcrumb-item active">Categories</li>
+      <li class="breadcrumb-item active">Categorias</li>
     </ol>
 
     <div class="card mb-3">
       <div class="card-header d-flex">
         <span>
           <i class="fas fa-chart-area"></i>
-          Categories Management
+          Categorias menú
         </span>
         <button
           class="btn btn-primary btn-sm ml-auto"
           v-on:click="showNewCategoryModal"
         >
-          <span class="fa fa-plus"></span> Create New
+          <span class="fa fa-plus"></span> Crear nuevo
         </button>
       </div>
       <div class="card-body">
@@ -26,9 +26,9 @@
           <thead>
             <tr>
               <td>#</td>
-              <td>Name</td>
-              <td>Image</td>
-              <td>Action</td>
+              <td>Nombre</td>
+              <td>Imagen</td>
+              <td>Acciones</td>
             </tr>
           </thead>
           <tbody>
@@ -51,7 +51,7 @@
         </table>
         <div class="text-center" v-show="moreExists">
           <button type="button" class="btn btn-primary btn-sm" v-on:click="loadMore">
-            <span class="fa fa-arrow-down"> Cargar más</span>
+            <span class="fa fa-arrow-down"></span> Cargar más
           </button>
         </div>
         
@@ -62,7 +62,7 @@
       <div class="d-block">
         <form v-on:submit.prevent="createCategory">
           <div class="form-group">
-            <label for="name">Enter Name</label>
+            <label for="name">Escribe el nombre</label>
             <input
               type="text"
               v-model="categoryData.name"
@@ -73,7 +73,7 @@
             <div class="invalid-feedback" v-if="errors.name">{{errors.name[0]}}</div>
           </div>
           <div class="form-group">
-            <label for="image">Choose an image</label>
+            <label for="image">Escoge una imagen</label>
             <div v-if="categoryData.image.name">
               <img src="" ref="newCategoryImageDisplay" class="w-150px" />
             </div>
@@ -109,7 +109,7 @@
       <div class="d-block">
         <form v-on:submit.prevent="updateCategory">
           <div class="form-group">
-            <label for="name">Enter Name</label>
+            <label for="name">Escribe el nombre</label>
             <input
               type="text"
               v-model="editCategoryData.name"
@@ -120,7 +120,7 @@
             <div class="invalid-feedback" v-if="errors.name">{{errors.name[0]}}</div>
           </div>
           <div class="form-group">
-            <label for="image">Choose an image</label>
+            <label for="image">Escoge una imagen</label>
             <div>
               <img :src="`${$store.state.serverPath}/storage/${editCategoryData.image}`" ref="editCategoryImageDisplay" class="w-150px" />
             </div>
@@ -188,7 +188,7 @@ export default {
         }
       } catch (error) {
         this.flashMessage.error({
-          message: 'Some error occurred, Please refresh!',
+          message: 'Ha ocurrido un error refresca!',
           time: 5000
         });
       }
@@ -222,7 +222,7 @@ export default {
         this.categories.unshift(response.data);
         this.hideNewCategoryModal();
         this.flashMessage.success({
-          message: 'Category stored successfully!',
+          message: 'Categoria guardada',
           time: 5000
         });
         this.categoryData = {
@@ -236,7 +236,7 @@ export default {
             break;
           default:
             this.flashMessage.error({
-              message: 'Some error occurred, Please try again!',
+              message: 'Ha ocurrido un error prueba de nuevo!',
               time: 5000
             });
             break;
@@ -244,7 +244,7 @@ export default {
       }
     },
     deleteCategory: async function(category) {
-      if (!window.confirm(`Are you sure you want to delete ${category.name}`)) {
+      if (!window.confirm(`¿Estás seguro de que quieres borrar…? ${category.name}`)) {
         return;
       }
 
@@ -256,7 +256,7 @@ export default {
         });
 
         this.flashMessage.success({
-          message: 'Category deleted successfully!',
+          message: 'Categoria borrada correctamente!',
           time: 5000
         });
       } catch (error) {
@@ -307,7 +307,7 @@ export default {
         });
         this.hideEditCategoryModal();
         this.flashMessage.success({
-          message: 'Category updated successfully!',
+          message: 'Categoria cambiada correctamente!',
           time: 5000
         });
       } catch (error) {

@@ -229,7 +229,7 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
                 _context.prev = 8;
                 _context.t0 = _context["catch"](0);
                 this.flashMessage.error({
-                  message: 'Some error occurred, Please refresh!',
+                  message: 'Ha ocurrido un error refresca!',
                   time: 5000
                 });
 
@@ -280,7 +280,7 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
                 this.categories.unshift(response.data);
                 this.hideNewCategoryModal();
                 this.flashMessage.success({
-                  message: 'Category stored successfully!',
+                  message: 'Categoria guardada',
                   time: 5000
                 });
                 this.categoryData = {
@@ -303,7 +303,7 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
 
               case 20:
                 this.flashMessage.error({
-                  message: 'Some error occurred, Please try again!',
+                  message: 'Ha ocurrido un error prueba de nuevo!',
                   time: 5000
                 });
                 return _context2.abrupt("break", 22);
@@ -328,7 +328,7 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
           while (1) {
             switch (_context3.prev = _context3.next) {
               case 0:
-                if (window.confirm("Are you sure you want to delete ".concat(category.name))) {
+                if (window.confirm("\xBFEst\xE1s seguro de que quieres borrar\u2026? ".concat(category.name))) {
                   _context3.next = 2;
                   break;
                 }
@@ -345,7 +345,7 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
                   return obj.id != category.id;
                 });
                 this.flashMessage.success({
-                  message: 'Category deleted successfully!',
+                  message: 'Categoria borrada correctamente!',
                   time: 5000
                 });
                 _context3.next = 12;
@@ -418,7 +418,7 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
                 });
                 this.hideEditCategoryModal();
                 this.flashMessage.success({
-                  message: 'Category updated successfully!',
+                  message: 'Categoria cambiada correctamente!',
                   time: 5000
                 });
                 _context4.next = 17;
@@ -530,7 +530,7 @@ var render = function() {
         ),
         _vm._v(" "),
         _c("li", { staticClass: "breadcrumb-item active" }, [
-          _vm._v("Categories")
+          _vm._v("Categorias")
         ])
       ]),
       _vm._v(" "),
@@ -546,7 +546,7 @@ var render = function() {
             },
             [
               _c("span", { staticClass: "fa fa-plus" }),
-              _vm._v(" Create New\n      ")
+              _vm._v(" Crear nuevo\n      ")
             ]
           )
         ]),
@@ -631,9 +631,8 @@ var render = function() {
                   on: { click: _vm.loadMore }
                 },
                 [
-                  _c("span", { staticClass: "fa fa-arrow-down" }, [
-                    _vm._v(" Cargar más")
-                  ])
+                  _c("span", { staticClass: "fa fa-arrow-down" }),
+                  _vm._v(" Cargar más\n        ")
                 ]
               )
             ]
@@ -662,7 +661,7 @@ var render = function() {
               [
                 _c("div", { staticClass: "form-group" }, [
                   _c("label", { attrs: { for: "name" } }, [
-                    _vm._v("Enter Name")
+                    _vm._v("Escribe el nombre")
                   ]),
                   _vm._v(" "),
                   _c("input", {
@@ -700,7 +699,7 @@ var render = function() {
                 _vm._v(" "),
                 _c("div", { staticClass: "form-group" }, [
                   _c("label", { attrs: { for: "image" } }, [
-                    _vm._v("Choose an image")
+                    _vm._v("Escoge una imagen")
                   ]),
                   _vm._v(" "),
                   _vm.categoryData.image.name
@@ -779,7 +778,7 @@ var render = function() {
               [
                 _c("div", { staticClass: "form-group" }, [
                   _c("label", { attrs: { for: "name" } }, [
-                    _vm._v("Enter Name")
+                    _vm._v("Escribe el nombre")
                   ]),
                   _vm._v(" "),
                   _c("input", {
@@ -821,7 +820,7 @@ var render = function() {
                 _vm._v(" "),
                 _c("div", { staticClass: "form-group" }, [
                   _c("label", { attrs: { for: "image" } }, [
-                    _vm._v("Choose an image")
+                    _vm._v("Escoge una imagen")
                   ]),
                   _vm._v(" "),
                   _c("div", [
@@ -892,7 +891,7 @@ var staticRenderFns = [
     var _c = _vm._self._c || _h
     return _c("span", [
       _c("i", { staticClass: "fas fa-chart-area" }),
-      _vm._v("\n        Categories Management\n      ")
+      _vm._v("\n        Categorias menú\n      ")
     ])
   },
   function() {
@@ -903,11 +902,11 @@ var staticRenderFns = [
       _c("tr", [
         _c("td", [_vm._v("#")]),
         _vm._v(" "),
-        _c("td", [_vm._v("Name")]),
+        _c("td", [_vm._v("Nombre")]),
         _vm._v(" "),
-        _c("td", [_vm._v("Image")]),
+        _c("td", [_vm._v("Imagen")]),
         _vm._v(" "),
-        _c("td", [_vm._v("Action")])
+        _c("td", [_vm._v("Acciones")])
       ])
     ])
   }
