@@ -16,7 +16,7 @@
                 placeholder="Enter email address"
                 required="required"
                 />
-              <label for="inputEmail">Meter dirección email</label>
+              <label for="inputEmail">Añadir dirección email</label>
             </div>
           </div>
           <div class="form-group">
@@ -28,7 +28,7 @@
                 placeholder="Enter new password"
                 required="required"
                 />
-              <label for="password">Meter nueva contraseña</label>
+              <label for="password">Añadir nueva contraseña</label>
             </div>
           </div>
           <div class="form-group">
@@ -46,7 +46,7 @@
           <button type="submit" class="btn btn-primary btn-block" ref="btnSubmit">Cambiar contraseña</button>
         </form>
         <div class="text-center">
-          <router-link to="/reset-password-request" class="d-block small mt-3">Renviar código de verificación</router-link>
+          <router-link to="/reset-password-request" class="d-block small mt-3">Reenviar código de verificación</router-link>
           <router-link class="d-block small" to="/login">Login</router-link>
         </div>
       </div>

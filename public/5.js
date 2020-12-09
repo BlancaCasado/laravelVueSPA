@@ -123,7 +123,7 @@ var render = function() {
                 staticClass: "d-block small mt-3",
                 attrs: { to: "/reset-password-request" }
               },
-              [_vm._v("Renviar código de verificación")]
+              [_vm._v("Reenviar código de verificación")]
             ),
             _vm._v(" "),
             _c(
@@ -164,7 +164,7 @@ var staticRenderFns = [
         }),
         _vm._v(" "),
         _c("label", { attrs: { for: "inputEmail" } }, [
-          _vm._v("Meter dirección email")
+          _vm._v("Añadir dirección email")
         ])
       ])
     ])
@@ -186,7 +186,7 @@ var staticRenderFns = [
         }),
         _vm._v(" "),
         _c("label", { attrs: { for: "password" } }, [
-          _vm._v("Meter nueva contraseña")
+          _vm._v("Añadir nueva contraseña")
         ])
       ])
     ])
