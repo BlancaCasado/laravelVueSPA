@@ -8,7 +8,6 @@ Vue.use(Router);
 const routes = [
   {
     path: "/home",
-    name: "home",
     component: Home,
     children: [
       {
@@ -38,7 +37,14 @@ const routes = [
   {
     path: '/login',
     name: 'login',
-    component: () => import('./views/authentication/Login.vue')
+    component: () => import('./views/authentication/Login.vue'),
+    beforeEnter(to, from, next){
+      if (!auth.isLoggedIn()) {
+        next();
+      }else {
+        next('/home');
+      }
+    }
   },
   {
     path: '/reset-password',
@@ -49,6 +55,7 @@ const routes = [
 ];
 
 const router = new Router({
+  mode:'history', //cambia la URL (no aparecerá el enlace completo)
   routes: routes,
   linkActiveClass: "active"
 });

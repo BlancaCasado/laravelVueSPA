@@ -150,7 +150,7 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
 
               case 16:
                 this.flashMessage.error({
-                  message: 'Ha ocurrido un error prueba de nuevo!',
+                  message: 'Ha ocurrido un error, intentalo de nuevo',
                   time: 5000
                 });
                 return _context.abrupt("break", 18);
@@ -422,108 +422,6 @@ var staticRenderFns = []
 render._withStripped = true
 
 
-
-/***/ }),
-
-/***/ "./resources/js/services/auth_service.js":
-/*!***********************************************!*\
-  !*** ./resources/js/services/auth_service.js ***!
-  \***********************************************/
-/*! exports provided: register, login */
-/***/ (function(module, __webpack_exports__, __webpack_require__) {
-
-"use strict";
-__webpack_require__.r(__webpack_exports__);
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "register", function() { return register; });
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "login", function() { return login; });
-/* harmony import */ var _http_service__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./http_service */ "./resources/js/services/http_service.js");
- // import jwt from 'jsonwebtoken';
-// import store from '../store';
-
-function register(user) {
-  return Object(_http_service__WEBPACK_IMPORTED_MODULE_0__["http"])().post('/auth/register', user);
-}
-function login(user) {
-  return Object(_http_service__WEBPACK_IMPORTED_MODULE_0__["http"])().post('/auth/login', user);
-} // export function login(user) {
-//     return http().post('/auth/login', user)
-//     .then(response => {
-//         if (response.status === 200) {
-//             setToken(response.data)
-//         }
-//         return response.data;
-//     });
-// }
-// function setToken(user) {
-//     const token = jwt.sign({ user: user }, 'laravelvuespaabfjdsafjasljsoftgear2019');
-//     localStorage.setItem('larave-vue-spa-token', token);
-//     store.dispatch('authenticate', user.user);
-// }
-// export function isLoggedIn() {
-//     const token = localStorage.getItem('larave-vue-spa-token');
-//     return token != null;
-// }
-// export function logout() {
-//     http().get('/auth/logout');
-//     localStorage.removeItem('larave-vue-spa-token');
-// }
-// export function getAccessToken() {
-//     const token = localStorage.getItem('larave-vue-spa-token');
-//     if (!token) {
-//         return null;
-//     }
-//     const tokenData = jwt.decode(token);
-//     return tokenData.user.access_token;
-// }
-// export function getUserRole() {
-//     const token = localStorage.getItem('larave-vue-spa-token');
-//     if (!token) {
-//         return null;
-//     }
-//     const tokenData = jwt.decode(token);
-//     return tokenData.user.user.role;
-// }
-// export function getProfile() {
-//     return http().get('/auth/profile');
-// }
-// export function resetPasswordRequest(user) {
-//     return http().post('/auth/reset-password-request', user);
-// }
-// export function resetPassword(user) {
-//     return http().post('/auth/reset-password', user);
-// }
-
-/***/ }),
-
-/***/ "./resources/js/services/http_service.js":
-/*!***********************************************!*\
-  !*** ./resources/js/services/http_service.js ***!
-  \***********************************************/
-/*! exports provided: http, httpFile */
-/***/ (function(module, __webpack_exports__, __webpack_require__) {
-
-"use strict";
-__webpack_require__.r(__webpack_exports__);
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "http", function() { return http; });
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "httpFile", function() { return httpFile; });
-/* harmony import */ var _store__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ../store */ "./resources/js/store.js");
-/* harmony import */ var axios__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! axios */ "./node_modules/axios/index.js");
-/* harmony import */ var axios__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(axios__WEBPACK_IMPORTED_MODULE_1__);
-
-
-function http() {
-  return axios__WEBPACK_IMPORTED_MODULE_1___default.a.create({
-    baseURL: _store__WEBPACK_IMPORTED_MODULE_0__["default"].state.apiURL
-  });
-}
-function httpFile() {
-  return axios__WEBPACK_IMPORTED_MODULE_1___default.a.create({
-    baseURL: _store__WEBPACK_IMPORTED_MODULE_0__["default"].state.apiURL,
-    headers: {
-      'Content-Type': 'multipart/form-data'
-    }
-  });
-}
 
 /***/ }),
 

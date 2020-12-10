@@ -27,6 +27,21 @@ export function isLoggedIn() {
     return token != null;
 }
 
+export function logout() {
+    http().get('/auth/logout');
+    localStorage.removeItem('laravel-vue-spa-token');
+}
+
+export function getAccessToken() {
+    const token = localStorage.getItem('laravel-vue-spa-token');
+    if (!token) {
+        return null;
+    }
+
+    const tokenData = jwt.decode(token);
+    return tokenData.user.access_token;
+}
+
 // export function login(user) {
 //     return http().post('/auth/login', user)
 //     .then(response => {
