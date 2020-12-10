@@ -25,6 +25,9 @@
       Header,
       Sidebar,
       Footer
-    }
+    },
+    created() {
+      document.querySelector('body').style.backgroundColor = '#FFFFFF';
+    },
   }
 </script>

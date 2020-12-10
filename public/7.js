@@ -429,18 +429,22 @@ render._withStripped = true
 /*!***********************************************!*\
   !*** ./resources/js/services/auth_service.js ***!
   \***********************************************/
-/*! exports provided: register */
+/*! exports provided: register, login */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "register", function() { return register; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "login", function() { return login; });
 /* harmony import */ var _http_service__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./http_service */ "./resources/js/services/http_service.js");
  // import jwt from 'jsonwebtoken';
 // import store from '../store';
 
 function register(user) {
   return Object(_http_service__WEBPACK_IMPORTED_MODULE_0__["http"])().post('/auth/register', user);
+}
+function login(user) {
+  return Object(_http_service__WEBPACK_IMPORTED_MODULE_0__["http"])().post('/auth/login', user);
 } // export function login(user) {
 //     return http().post('/auth/login', user)
 //     .then(response => {

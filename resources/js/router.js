@@ -1,7 +1,7 @@
 import Vue from "vue";
 import Router from "vue-router";
 import Home from "./views/Home.vue";
-
+import * as auth from './services/auth_service';
 
 Vue.use(Router);
 
@@ -21,7 +21,14 @@ const routes = [
         name: "categories",
         component: () => import("./views/Categories.vue")
       },
-    ]
+    ],
+    beforeEnter(to, from, next){
+      if (!auth.isLoggedIn()) {
+        next('/login');
+      }else {
+        next();
+      }
+    }
   },
   {
     path: '/register',

@@ -113,7 +113,7 @@
               break;
             default:
               this.flashMessage.error({
-                message: 'Ha ocurrido un error prueba de nuevo!',
+                message: 'Ha ocurrido un error, intentalo de nuevo',
                 time: 5000
               });
               break;
