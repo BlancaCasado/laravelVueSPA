@@ -44,3 +44,4 @@ Route::group(['prefix' => 'user', 'middleware' => 'auth:api'], function () {
 });
 
 Route::resource('categories', 'CategoryController');
+Route::resource('histories', 'HistoryController');

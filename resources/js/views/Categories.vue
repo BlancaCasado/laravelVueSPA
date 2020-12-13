@@ -5,14 +5,14 @@
       <li class="breadcrumb-item">
         <router-link to="/home">Dashboard</router-link>
       </li>
-      <li class="breadcrumb-item active">Categorias</li>
+      <li class="breadcrumb-item active">Categoría</li>
     </ol>
 
     <div class="card mb-3">
       <div class="card-header d-flex">
         <span>
           <i class="fas fa-chart-area"></i>
-          Categorias menú
+          Categorías menú
         </span>
         <button
           class="btn btn-primary btn-sm ml-auto"

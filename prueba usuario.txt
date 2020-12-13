@@ -1,4 +1,16 @@
-	"name": "prueba",
-	"email": "prueba@gmail.com",
-	"password": "prueba",
-	"password_confirmation": "prueba"
+
+--------------------------Login------------------------------
+
+//////////////////////////Admin//////////////////////////////
+	
+	"name": "Blanca",
+	"email": "bcasadoalvarez@gmail.com",
+	"password": "Blanca",
+	"password_confirmation": "Blanca"
+
+//////////////////////////Usuario/////////////////////////////
+
+	"name": "user",
+	"email": "pruebauser@gmail.com",
+	"password": "user",
+	"password_confirmation": "user"

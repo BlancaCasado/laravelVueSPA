@@ -532,7 +532,7 @@ var render = function() {
         ),
         _vm._v(" "),
         _c("li", { staticClass: "breadcrumb-item active" }, [
-          _vm._v("Categorias")
+          _vm._v("Categoría")
         ])
       ]),
       _vm._v(" "),
@@ -933,7 +933,7 @@ var staticRenderFns = [
     var _c = _vm._self._c || _h
     return _c("span", [
       _c("i", { staticClass: "fas fa-chart-area" }),
-      _vm._v("\n        Categorias menú\n      ")
+      _vm._v("\n        Categorías menú\n      ")
     ])
   }
 ]

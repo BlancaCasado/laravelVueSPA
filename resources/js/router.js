@@ -20,6 +20,12 @@ const routes = [
         name: "categories",
         component: () => import("./views/Categories.vue")
       },
+      ,
+      {
+        path: "histories",
+        name: "histories",
+        component: () => import("./views/Histories.vue")
+      },
     ],
     beforeEnter(to, from, next){
       if (!auth.isLoggedIn()) {
