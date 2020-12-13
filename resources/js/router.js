@@ -20,11 +20,15 @@ const routes = [
         name: "categories",
         component: () => import("./views/Categories.vue")
       },
-      ,
       {
         path: "histories",
         name: "histories",
         component: () => import("./views/Histories.vue")
+      },
+      {
+        path: "authors",
+        name: "authors",
+        component: () => import("./views/Authors.vue")
       },
     ],
     beforeEnter(to, from, next){
@@ -56,6 +60,11 @@ const routes = [
     path: '/reset-password',
     name: 'reset-password',
     component: () => import('./views/authentication/ResetPassword.vue')
+  },
+  {
+    path: '*',
+    name: 'page404',
+    component: () => import('./views/Page404.vue')
   }
 
 ];
