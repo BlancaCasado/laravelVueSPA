@@ -5,18 +5,19 @@
       <li class="breadcrumb-item">
         <router-link to="/home">Dashboard</router-link>
       </li>
-      <li class="breadcrumb-item active">History</li>
+      <li class="breadcrumb-item active">Historia</li>
     </ol>
 
     <div class="card mb-3">
       <div class="card-header d-flex">
         <span>
           <i class="fas fa-chart-area"></i>
-          Historias menú
+          Historias
         </span>
         <button
           class="btn btn-primary btn-sm ml-auto"
           v-on:click="showNewHistoryModal"
+          v-show="$store.state.profile.role === 'administrator'"
         >
           <span class="fa fa-plus"></span> Crear nuevo
         </button>
@@ -51,14 +52,14 @@
         </table>
         <div class="text-center" v-show="moreExists">
           <button type="button" class="btn btn-primary btn-sm" v-on:click="loadMore">
-            <span class="fa fa-arrow-down"></span> Cargar más
+            <span class="fas fa-sync fa-spin"></span> Cargar más
           </button>
         </div>
         
       </div>
     </div>
 
-    <b-modal ref="newHistoryModal" hide-footer title="Add New History">
+    <b-modal ref="newHistoryModal" hide-footer title="Añadir nuevo post de historia">
       <div class="d-block">
         <form v-on:submit.prevent="createHistory">
           <div class="form-group">
@@ -68,7 +69,7 @@
               v-model="historyData.name"
               class="form-control"
               id="name"
-              placeholder="Enter history name"
+              placeholder="Introduzca el nombre del post de historia"
             />
             <div class="invalid-feedback" v-if="errors.name">{{errors.name[0]}}</div>
           </div>
@@ -115,7 +116,7 @@
               v-model="editHistoryData.name"
               class="form-control"
               id="name"
-              placeholder="Enter history name"
+              placeholder="Introduzca el nombre del post de historia"
             />
             <div class="invalid-feedback" v-if="errors.name">{{errors.name[0]}}</div>
           </div>

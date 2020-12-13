@@ -12,11 +12,12 @@
       <div class="card-header d-flex">
         <span>
           <i class="fas fa-chart-area"></i>
-          Autores menú
+          Autores
         </span>
         <button
           class="btn btn-primary btn-sm ml-auto"
           v-on:click="showNewAuthorModal"
+          v-show="$store.state.profile.role === 'administrator'"
         >
           <span class="fa fa-plus"></span> Crear nuevo
         </button>
@@ -51,14 +52,14 @@
         </table>
         <div class="text-center" v-show="moreExists">
           <button type="button" class="btn btn-primary btn-sm" v-on:click="loadMore">
-            <span class="fa fa-arrow-down"></span> Cargar más
+            <span class="fas fa-sync fa-spin"></span> Cargar más
           </button>
         </div>
         
       </div>
     </div>
 
-    <b-modal ref="newAuthorModal" hide-footer title="Add New Author">
+    <b-modal ref="newAuthorModal" hide-footer title="Añadir nuevo autor">
       <div class="d-block">
         <form v-on:submit.prevent="createAuthor">
           <div class="form-group">
@@ -68,7 +69,7 @@
               v-model="authorData.name"
               class="form-control"
               id="name"
-              placeholder="Enter author name"
+              placeholder="Introduzca el nombre del autor"
             />
             <div class="invalid-feedback" v-if="errors.name">{{errors.name[0]}}</div>
           </div>
@@ -115,7 +116,7 @@
               v-model="editAuthorData.name"
               class="form-control"
               id="name"
-              placeholder="Enter author name"
+              placeholder="Introduzca el nombre del autor"
             />
             <div class="invalid-feedback" v-if="errors.name">{{errors.name[0]}}</div>
           </div>

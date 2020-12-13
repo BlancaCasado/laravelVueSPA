@@ -1,9 +1,9 @@
 (window["webpackJsonp"] = window["webpackJsonp"] || []).push([[0],{
 
-/***/ "./node_modules/babel-loader/lib/index.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/views/Categories.vue?vue&type=script&lang=js&":
-/*!****************************************************************************************************************************************************************!*\
-  !*** ./node_modules/babel-loader/lib??ref--4-0!./node_modules/vue-loader/lib??vue-loader-options!./resources/js/views/Categories.vue?vue&type=script&lang=js& ***!
-  \****************************************************************************************************************************************************************/
+/***/ "./node_modules/babel-loader/lib/index.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/views/Authors.vue?vue&type=script&lang=js&":
+/*!*************************************************************************************************************************************************************!*\
+  !*** ./node_modules/babel-loader/lib??ref--4-0!./node_modules/vue-loader/lib??vue-loader-options!./resources/js/views/Authors.vue?vue&type=script&lang=js& ***!
+  \*************************************************************************************************************************************************************/
 /*! exports provided: default */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
@@ -11,7 +11,7 @@
 __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! @babel/runtime/regenerator */ "./node_modules/@babel/runtime/regenerator/index.js");
 /* harmony import */ var _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0__);
-/* harmony import */ var _services_category_service__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../services/category_service */ "./resources/js/services/category_service.js");
+/* harmony import */ var _services_author_service__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../services/author_service */ "./resources/js/services/author_service.js");
 
 
 function ownKeys(object, enumerableOnly) { var keys = Object.keys(object); if (Object.getOwnPropertySymbols) { var symbols = Object.getOwnPropertySymbols(object); if (enumerableOnly) symbols = symbols.filter(function (sym) { return Object.getOwnPropertyDescriptor(object, sym).enumerable; }); keys.push.apply(keys, symbols); } return keys; }
@@ -180,28 +180,29 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
 //
 //
 //
+//
 
 /* harmony default export */ __webpack_exports__["default"] = ({
-  name: "category",
+  name: "author",
   data: function data() {
     return {
-      categories: [],
-      categoryData: {
+      authors: [],
+      authorData: {
         name: '',
         image: ''
       },
       moreExists: false,
       nextPage: 0,
-      editCategoryData: {},
+      editAuthorData: {},
       errors: {}
     };
   },
   mounted: function mounted() {
-    this.loadCategories();
+    this.loadAuthors();
   },
   methods: {
-    loadCategories: function () {
-      var _loadCategories = _asyncToGenerator( /*#__PURE__*/_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.mark(function _callee() {
+    loadAuthors: function () {
+      var _loadAuthors = _asyncToGenerator( /*#__PURE__*/_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.mark(function _callee() {
         var response;
         return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.wrap(function _callee$(_context) {
           while (1) {
@@ -209,11 +210,11 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
               case 0:
                 _context.prev = 0;
                 _context.next = 3;
-                return _services_category_service__WEBPACK_IMPORTED_MODULE_1__["loadCategories"]();
+                return _services_author_service__WEBPACK_IMPORTED_MODULE_1__["loadAuthors"]();
 
               case 3:
                 response = _context.sent;
-                this.categories = response.data.data;
+                this.authors = response.data.data;
 
                 if (response.data.current_page < response.data.last_page) {
                   this.moreExists = true;
@@ -241,49 +242,49 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
         }, _callee, this, [[0, 8]]);
       }));
 
-      function loadCategories() {
-        return _loadCategories.apply(this, arguments);
+      function loadAuthors() {
+        return _loadAuthors.apply(this, arguments);
       }
 
-      return loadCategories;
+      return loadAuthors;
     }(),
     attachImage: function attachImage() {
-      this.categoryData.image = this.$refs.newCategoryImage.files[0];
+      this.authorData.image = this.$refs.newAuthorImage.files[0];
       var reader = new FileReader();
       reader.addEventListener("load", function () {
-        this.$refs.newCategoryImageDisplay.src = reader.result;
+        this.$refs.newAuthorImageDisplay.src = reader.result;
       }.bind(this), false);
-      reader.readAsDataURL(this.categoryData.image);
+      reader.readAsDataURL(this.authorData.image);
     },
-    hideNewCategoryModal: function hideNewCategoryModal() {
-      this.$refs.newCategoryModal.hide();
+    hideNewAuthorModal: function hideNewAuthorModal() {
+      this.$refs.newAuthorModal.hide();
     },
-    showNewCategoryModal: function showNewCategoryModal() {
-      this.$refs.newCategoryModal.show();
+    showNewAuthorModal: function showNewAuthorModal() {
+      this.$refs.newAuthorModal.show();
     },
-    createCategory: function () {
-      var _createCategory = _asyncToGenerator( /*#__PURE__*/_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.mark(function _callee2() {
+    createAuthor: function () {
+      var _createAuthor = _asyncToGenerator( /*#__PURE__*/_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.mark(function _callee2() {
         var formData, response;
         return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.wrap(function _callee2$(_context2) {
           while (1) {
             switch (_context2.prev = _context2.next) {
               case 0:
                 formData = new FormData();
-                formData.append("name", this.categoryData.name);
-                formData.append("image", this.categoryData.image);
+                formData.append("name", this.authorData.name);
+                formData.append("image", this.authorData.image);
                 _context2.prev = 3;
                 _context2.next = 6;
-                return _services_category_service__WEBPACK_IMPORTED_MODULE_1__["createCategory"](formData);
+                return _services_author_service__WEBPACK_IMPORTED_MODULE_1__["createAuthor"](formData);
 
               case 6:
                 response = _context2.sent;
-                this.categories.unshift(response.data);
-                this.hideNewCategoryModal();
+                this.authors.unshift(response.data);
+                this.hideNewAuthorModal();
                 this.flashMessage.success({
-                  message: 'Categoria guardada',
+                  message: 'Autor guardado',
                   time: 5000
                 });
-                this.categoryData = {
+                this.authorData = {
                   name: '',
                   image: ''
                 };
@@ -316,19 +317,19 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
         }, _callee2, this, [[3, 13]]);
       }));
 
-      function createCategory() {
-        return _createCategory.apply(this, arguments);
+      function createAuthor() {
+        return _createAuthor.apply(this, arguments);
       }
 
-      return createCategory;
+      return createAuthor;
     }(),
-    deleteCategory: function () {
-      var _deleteCategory = _asyncToGenerator( /*#__PURE__*/_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.mark(function _callee3(category) {
+    deleteAuthor: function () {
+      var _deleteAuthor = _asyncToGenerator( /*#__PURE__*/_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.mark(function _callee3(author) {
         return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.wrap(function _callee3$(_context3) {
           while (1) {
             switch (_context3.prev = _context3.next) {
               case 0:
-                if (window.confirm("\xBFEst\xE1s seguro de que quieres borrar\u2026? ".concat(category.name))) {
+                if (window.confirm("\xBFEst\xE1s seguro de que quieres borrar\u2026? ".concat(author.name))) {
                   _context3.next = 2;
                   break;
                 }
@@ -338,14 +339,14 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
               case 2:
                 _context3.prev = 2;
                 _context3.next = 5;
-                return _services_category_service__WEBPACK_IMPORTED_MODULE_1__["deleteCategory"](category.id);
+                return _services_author_service__WEBPACK_IMPORTED_MODULE_1__["deleteAuthor"](author.id);
 
               case 5:
-                this.categories = this.categories.filter(function (obj) {
-                  return obj.id != category.id;
+                this.authors = this.authors.filter(function (obj) {
+                  return obj.id != author.id;
                 });
                 this.flashMessage.success({
-                  message: 'Categoria borrada correctamente!',
+                  message: 'Autor borrado correctamente',
                   time: 5000
                 });
                 _context3.next = 12;
@@ -367,32 +368,32 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
         }, _callee3, this, [[2, 9]]);
       }));
 
-      function deleteCategory(_x) {
-        return _deleteCategory.apply(this, arguments);
+      function deleteAuthor(_x) {
+        return _deleteAuthor.apply(this, arguments);
       }
 
-      return deleteCategory;
+      return deleteAuthor;
     }(),
-    hideEditCategoryModal: function hideEditCategoryModal() {
-      this.$refs.editCategoryModal.hide();
+    hideEditAuthorModal: function hideEditAuthorModal() {
+      this.$refs.editAuthorModal.hide();
     },
-    showEditCategoryModal: function showEditCategoryModal() {
-      this.$refs.editCategoryModal.show();
+    showEditAuthorModal: function showEditAuthorModal() {
+      this.$refs.editAuthorModal.show();
     },
-    editCategory: function editCategory(category) {
-      this.editCategoryData = _objectSpread({}, category);
-      this.showEditCategoryModal();
+    editAuthor: function editAuthor(author) {
+      this.editAuthorData = _objectSpread({}, author);
+      this.showEditAuthorModal();
     },
     editAttachImage: function editAttachImage() {
-      this.editCategoryData.image = this.$refs.editCategoryImage.files[0];
+      this.editAuthorData.image = this.$refs.editAuthorImage.files[0];
       var reader = new FileReader();
       reader.addEventListener("load", function () {
-        this.$refs.editCategoryImageDisplay.src = reader.result;
+        this.$refs.editAuthorImageDisplay.src = reader.result;
       }.bind(this), false);
-      reader.readAsDataURL(this.editCategoryData.image);
+      reader.readAsDataURL(this.editAuthorData.image);
     },
-    updateCategory: function () {
-      var _updateCategory = _asyncToGenerator( /*#__PURE__*/_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.mark(function _callee4() {
+    updateAuthor: function () {
+      var _updateAuthor = _asyncToGenerator( /*#__PURE__*/_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.mark(function _callee4() {
         var formData, response;
         return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.wrap(function _callee4$(_context4) {
           while (1) {
@@ -401,24 +402,24 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
                 console.log('update called');
                 _context4.prev = 1;
                 formData = new FormData();
-                formData.append('name', this.editCategoryData.name);
-                formData.append('image', this.editCategoryData.image);
+                formData.append('name', this.editAuthorData.name);
+                formData.append('image', this.editAuthorData.image);
                 formData.append('_method', 'put');
                 _context4.next = 8;
-                return _services_category_service__WEBPACK_IMPORTED_MODULE_1__["updateCategory"](this.editCategoryData.id, formData);
+                return _services_author_service__WEBPACK_IMPORTED_MODULE_1__["updateAuthor"](this.editAuthorData.id, formData);
 
               case 8:
                 response = _context4.sent;
-                this.categories.map(function (category) {
-                  if (category.id == response.data.id) {
+                this.authors.map(function (author) {
+                  if (author.id == response.data.id) {
                     for (var key in response.data) {
-                      category[key] = response.data[key];
+                      author[key] = response.data[key];
                     }
                   }
                 });
-                this.hideEditCategoryModal();
+                this.hideEditAuthorModal();
                 this.flashMessage.success({
-                  message: 'Categoria cambiada correctamente!',
+                  message: 'Autor cambiado correctamente',
                   time: 5000
                 });
                 _context4.next = 17;
@@ -440,11 +441,11 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
         }, _callee4, this, [[1, 14]]);
       }));
 
-      function updateCategory() {
-        return _updateCategory.apply(this, arguments);
+      function updateAuthor() {
+        return _updateAuthor.apply(this, arguments);
       }
 
-      return updateCategory;
+      return updateAuthor;
     }(),
     loadMore: function () {
       var _loadMore = _asyncToGenerator( /*#__PURE__*/_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.mark(function _callee5() {
@@ -457,7 +458,7 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
               case 0:
                 _context5.prev = 0;
                 _context5.next = 3;
-                return _services_category_service__WEBPACK_IMPORTED_MODULE_1__["loadMore"](this.nextPage);
+                return _services_author_service__WEBPACK_IMPORTED_MODULE_1__["loadMore"](this.nextPage);
 
               case 3:
                 response = _context5.sent;
@@ -470,7 +471,7 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
                 }
 
                 response.data.data.forEach(function (data) {
-                  _this.categories.push(data);
+                  _this.authors.push(data);
                 });
                 _context5.next = 11;
                 break;
@@ -502,10 +503,10 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
 
 /***/ }),
 
-/***/ "./node_modules/vue-loader/lib/loaders/templateLoader.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/views/Categories.vue?vue&type=template&id=53f0967b&":
-/*!********************************************************************************************************************************************************************************************************!*\
-  !*** ./node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!./node_modules/vue-loader/lib??vue-loader-options!./resources/js/views/Categories.vue?vue&type=template&id=53f0967b& ***!
-  \********************************************************************************************************************************************************************************************************/
+/***/ "./node_modules/vue-loader/lib/loaders/templateLoader.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/views/Authors.vue?vue&type=template&id=46af4079&":
+/*!*****************************************************************************************************************************************************************************************************!*\
+  !*** ./node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!./node_modules/vue-loader/lib??vue-loader-options!./resources/js/views/Authors.vue?vue&type=template&id=46af4079& ***!
+  \*****************************************************************************************************************************************************************************************************/
 /*! exports provided: render, staticRenderFns */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
@@ -531,9 +532,7 @@ var render = function() {
           1
         ),
         _vm._v(" "),
-        _c("li", { staticClass: "breadcrumb-item active" }, [
-          _vm._v("Categoría")
-        ])
+        _c("li", { staticClass: "breadcrumb-item active" }, [_vm._v("Autor")])
       ]),
       _vm._v(" "),
       _c("div", { staticClass: "card mb-3" }, [
@@ -543,8 +542,16 @@ var render = function() {
           _c(
             "button",
             {
+              directives: [
+                {
+                  name: "show",
+                  rawName: "v-show",
+                  value: _vm.$store.state.profile.role === "administrator",
+                  expression: "$store.state.profile.role === 'administrator'"
+                }
+              ],
               staticClass: "btn btn-primary btn-sm ml-auto",
-              on: { click: _vm.showNewCategoryModal }
+              on: { click: _vm.showNewAuthorModal }
             },
             [
               _c("span", { staticClass: "fa fa-plus" }),
@@ -584,11 +591,11 @@ var render = function() {
             _vm._v(" "),
             _c(
               "tbody",
-              _vm._l(_vm.categories, function(category, index) {
+              _vm._l(_vm.authors, function(author, index) {
                 return _c("tr", { key: index }, [
                   _c("td", [_vm._v(_vm._s(index + 1))]),
                   _vm._v(" "),
-                  _c("td", [_vm._v(_vm._s(category.name))]),
+                  _c("td", [_vm._v(_vm._s(author.name))]),
                   _vm._v(" "),
                   _c("td", [
                     _c("img", {
@@ -597,8 +604,8 @@ var render = function() {
                         src:
                           _vm.$store.state.serverPath +
                           "/storage/" +
-                          category.image,
-                        alt: category.name
+                          author.image,
+                        alt: author.name
                       }
                     })
                   ]),
@@ -624,7 +631,7 @@ var render = function() {
                           staticClass: "btn btn-primary btn-sm",
                           on: {
                             click: function($event) {
-                              return _vm.editCategory(category)
+                              return _vm.editAuthor(author)
                             }
                           }
                         },
@@ -637,7 +644,7 @@ var render = function() {
                           staticClass: "btn btn-danger btn-sm",
                           on: {
                             click: function($event) {
-                              return _vm.deleteCategory(category)
+                              return _vm.deleteAuthor(author)
                             }
                           }
                         },
@@ -673,7 +680,7 @@ var render = function() {
                   on: { click: _vm.loadMore }
                 },
                 [
-                  _c("span", { staticClass: "fa fa-arrow-down" }),
+                  _c("span", { staticClass: "fas fa-sync fa-spin" }),
                   _vm._v(" Cargar más\n        ")
                 ]
               )
@@ -685,8 +692,8 @@ var render = function() {
       _c(
         "b-modal",
         {
-          ref: "newCategoryModal",
-          attrs: { "hide-footer": "", title: "Add New Category" }
+          ref: "newAuthorModal",
+          attrs: { "hide-footer": "", title: "Añadir nuevo autor" }
         },
         [
           _c("div", { staticClass: "d-block" }, [
@@ -696,7 +703,7 @@ var render = function() {
                 on: {
                   submit: function($event) {
                     $event.preventDefault()
-                    return _vm.createCategory($event)
+                    return _vm.createAuthor($event)
                   }
                 }
               },
@@ -711,23 +718,23 @@ var render = function() {
                       {
                         name: "model",
                         rawName: "v-model",
-                        value: _vm.categoryData.name,
-                        expression: "categoryData.name"
+                        value: _vm.authorData.name,
+                        expression: "authorData.name"
                       }
                     ],
                     staticClass: "form-control",
                     attrs: {
                       type: "text",
                       id: "name",
-                      placeholder: "Enter category name"
+                      placeholder: "Introduzca el nombre del autor"
                     },
-                    domProps: { value: _vm.categoryData.name },
+                    domProps: { value: _vm.authorData.name },
                     on: {
                       input: function($event) {
                         if ($event.target.composing) {
                           return
                         }
-                        _vm.$set(_vm.categoryData, "name", $event.target.value)
+                        _vm.$set(_vm.authorData, "name", $event.target.value)
                       }
                     }
                   }),
@@ -744,10 +751,10 @@ var render = function() {
                     _vm._v("Escoge una imagen")
                   ]),
                   _vm._v(" "),
-                  _vm.categoryData.image.name
+                  _vm.authorData.image.name
                     ? _c("div", [
                         _c("img", {
-                          ref: "newCategoryImageDisplay",
+                          ref: "newAuthorImageDisplay",
                           staticClass: "w-150px",
                           attrs: { src: "" }
                         })
@@ -755,7 +762,7 @@ var render = function() {
                     : _vm._e(),
                   _vm._v(" "),
                   _c("input", {
-                    ref: "newCategoryImage",
+                    ref: "newAuthorImage",
                     staticClass: "form-control",
                     attrs: { type: "file", id: "image" },
                     on: { change: _vm.attachImage }
@@ -776,7 +783,7 @@ var render = function() {
                     {
                       staticClass: "btn btn-default",
                       attrs: { type: "button" },
-                      on: { click: _vm.hideNewCategoryModal }
+                      on: { click: _vm.hideNewAuthorModal }
                     },
                     [_vm._v("\n            Cancel\n          ")]
                   ),
@@ -802,8 +809,8 @@ var render = function() {
       _c(
         "b-modal",
         {
-          ref: "editCategoryModal",
-          attrs: { "hide-footer": "", title: "Update Category" }
+          ref: "editAuthorModal",
+          attrs: { "hide-footer": "", title: "Update Author" }
         },
         [
           _c("div", { staticClass: "d-block" }, [
@@ -813,7 +820,7 @@ var render = function() {
                 on: {
                   submit: function($event) {
                     $event.preventDefault()
-                    return _vm.updateCategory($event)
+                    return _vm.updateAuthor($event)
                   }
                 }
               },
@@ -828,24 +835,24 @@ var render = function() {
                       {
                         name: "model",
                         rawName: "v-model",
-                        value: _vm.editCategoryData.name,
-                        expression: "editCategoryData.name"
+                        value: _vm.editAuthorData.name,
+                        expression: "editAuthorData.name"
                       }
                     ],
                     staticClass: "form-control",
                     attrs: {
                       type: "text",
                       id: "name",
-                      placeholder: "Enter category name"
+                      placeholder: "Introduzca el nombre del autor"
                     },
-                    domProps: { value: _vm.editCategoryData.name },
+                    domProps: { value: _vm.editAuthorData.name },
                     on: {
                       input: function($event) {
                         if ($event.target.composing) {
                           return
                         }
                         _vm.$set(
-                          _vm.editCategoryData,
+                          _vm.editAuthorData,
                           "name",
                           $event.target.value
                         )
@@ -867,19 +874,19 @@ var render = function() {
                   _vm._v(" "),
                   _c("div", [
                     _c("img", {
-                      ref: "editCategoryImageDisplay",
+                      ref: "editAuthorImageDisplay",
                       staticClass: "w-150px",
                       attrs: {
                         src:
                           _vm.$store.state.serverPath +
                           "/storage/" +
-                          _vm.editCategoryData.image
+                          _vm.editAuthorData.image
                       }
                     })
                   ]),
                   _vm._v(" "),
                   _c("input", {
-                    ref: "editCategoryImage",
+                    ref: "editAuthorImage",
                     staticClass: "form-control",
                     attrs: { type: "file", id: "image" },
                     on: { change: _vm.editAttachImage }
@@ -900,7 +907,7 @@ var render = function() {
                     {
                       staticClass: "btn btn-default",
                       attrs: { type: "button" },
-                      on: { click: _vm.hideEditCategoryModal }
+                      on: { click: _vm.hideEditAuthorModal }
                     },
                     [_vm._v("\n            Cancel\n          ")]
                   ),
@@ -933,7 +940,7 @@ var staticRenderFns = [
     var _c = _vm._self._c || _h
     return _c("span", [
       _c("i", { staticClass: "fas fa-chart-area" }),
-      _vm._v("\n        Categorías menú\n      ")
+      _vm._v("\n        Autores\n      ")
     ])
   }
 ]
@@ -943,51 +950,51 @@ render._withStripped = true
 
 /***/ }),
 
-/***/ "./resources/js/services/category_service.js":
-/*!***************************************************!*\
-  !*** ./resources/js/services/category_service.js ***!
-  \***************************************************/
-/*! exports provided: createCategory, loadCategories, deleteCategory, updateCategory, loadMore */
+/***/ "./resources/js/services/author_service.js":
+/*!*************************************************!*\
+  !*** ./resources/js/services/author_service.js ***!
+  \*************************************************/
+/*! exports provided: createAuthor, loadAuthors, deleteAuthor, updateAuthor, loadMore */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "createCategory", function() { return createCategory; });
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "loadCategories", function() { return loadCategories; });
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "deleteCategory", function() { return deleteCategory; });
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "updateCategory", function() { return updateCategory; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "createAuthor", function() { return createAuthor; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "loadAuthors", function() { return loadAuthors; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "deleteAuthor", function() { return deleteAuthor; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "updateAuthor", function() { return updateAuthor; });
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "loadMore", function() { return loadMore; });
 /* harmony import */ var _http_service__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./http_service */ "./resources/js/services/http_service.js");
 
-function createCategory(data) {
-  return Object(_http_service__WEBPACK_IMPORTED_MODULE_0__["httpFile"])().post('/categories', data);
+function createAuthor(data) {
+  return Object(_http_service__WEBPACK_IMPORTED_MODULE_0__["httpFile"])().post('/authors', data);
 }
-function loadCategories() {
-  return Object(_http_service__WEBPACK_IMPORTED_MODULE_0__["http"])().get('/categories');
+function loadAuthors() {
+  return Object(_http_service__WEBPACK_IMPORTED_MODULE_0__["http"])().get('/authors');
 }
-function deleteCategory(id) {
-  return Object(_http_service__WEBPACK_IMPORTED_MODULE_0__["http"])()["delete"]("categories/".concat(id));
+function deleteAuthor(id) {
+  return Object(_http_service__WEBPACK_IMPORTED_MODULE_0__["http"])()["delete"]("authors/".concat(id));
 }
-function updateCategory(id, data) {
-  return Object(_http_service__WEBPACK_IMPORTED_MODULE_0__["httpFile"])().post("categories/".concat(id), data);
+function updateAuthor(id, data) {
+  return Object(_http_service__WEBPACK_IMPORTED_MODULE_0__["httpFile"])().post("authors/".concat(id), data);
 }
 function loadMore(nextPage) {
-  return Object(_http_service__WEBPACK_IMPORTED_MODULE_0__["http"])().get("categories?page=".concat(nextPage));
+  return Object(_http_service__WEBPACK_IMPORTED_MODULE_0__["http"])().get("authors?page=".concat(nextPage));
 }
 
 /***/ }),
 
-/***/ "./resources/js/views/Categories.vue":
-/*!*******************************************!*\
-  !*** ./resources/js/views/Categories.vue ***!
-  \*******************************************/
+/***/ "./resources/js/views/Authors.vue":
+/*!****************************************!*\
+  !*** ./resources/js/views/Authors.vue ***!
+  \****************************************/
 /*! exports provided: default */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
-/* harmony import */ var _Categories_vue_vue_type_template_id_53f0967b___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./Categories.vue?vue&type=template&id=53f0967b& */ "./resources/js/views/Categories.vue?vue&type=template&id=53f0967b&");
-/* harmony import */ var _Categories_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./Categories.vue?vue&type=script&lang=js& */ "./resources/js/views/Categories.vue?vue&type=script&lang=js&");
+/* harmony import */ var _Authors_vue_vue_type_template_id_46af4079___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./Authors.vue?vue&type=template&id=46af4079& */ "./resources/js/views/Authors.vue?vue&type=template&id=46af4079&");
+/* harmony import */ var _Authors_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./Authors.vue?vue&type=script&lang=js& */ "./resources/js/views/Authors.vue?vue&type=script&lang=js&");
 /* empty/unused harmony star reexport *//* harmony import */ var _node_modules_vue_loader_lib_runtime_componentNormalizer_js__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../../../node_modules/vue-loader/lib/runtime/componentNormalizer.js */ "./node_modules/vue-loader/lib/runtime/componentNormalizer.js");
 
 
@@ -997,9 +1004,9 @@ __webpack_require__.r(__webpack_exports__);
 /* normalize component */
 
 var component = Object(_node_modules_vue_loader_lib_runtime_componentNormalizer_js__WEBPACK_IMPORTED_MODULE_2__["default"])(
-  _Categories_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_1__["default"],
-  _Categories_vue_vue_type_template_id_53f0967b___WEBPACK_IMPORTED_MODULE_0__["render"],
-  _Categories_vue_vue_type_template_id_53f0967b___WEBPACK_IMPORTED_MODULE_0__["staticRenderFns"],
+  _Authors_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_1__["default"],
+  _Authors_vue_vue_type_template_id_46af4079___WEBPACK_IMPORTED_MODULE_0__["render"],
+  _Authors_vue_vue_type_template_id_46af4079___WEBPACK_IMPORTED_MODULE_0__["staticRenderFns"],
   false,
   null,
   null,
@@ -1009,38 +1016,38 @@ var component = Object(_node_modules_vue_loader_lib_runtime_componentNormalizer_
 
 /* hot reload */
 if (false) { var api; }
-component.options.__file = "resources/js/views/Categories.vue"
+component.options.__file = "resources/js/views/Authors.vue"
 /* harmony default export */ __webpack_exports__["default"] = (component.exports);
 
 /***/ }),
 
-/***/ "./resources/js/views/Categories.vue?vue&type=script&lang=js&":
-/*!********************************************************************!*\
-  !*** ./resources/js/views/Categories.vue?vue&type=script&lang=js& ***!
-  \********************************************************************/
+/***/ "./resources/js/views/Authors.vue?vue&type=script&lang=js&":
+/*!*****************************************************************!*\
+  !*** ./resources/js/views/Authors.vue?vue&type=script&lang=js& ***!
+  \*****************************************************************/
 /*! exports provided: default */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
-/* harmony import */ var _node_modules_babel_loader_lib_index_js_ref_4_0_node_modules_vue_loader_lib_index_js_vue_loader_options_Categories_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! -!../../../node_modules/babel-loader/lib??ref--4-0!../../../node_modules/vue-loader/lib??vue-loader-options!./Categories.vue?vue&type=script&lang=js& */ "./node_modules/babel-loader/lib/index.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/views/Categories.vue?vue&type=script&lang=js&");
-/* empty/unused harmony star reexport */ /* harmony default export */ __webpack_exports__["default"] = (_node_modules_babel_loader_lib_index_js_ref_4_0_node_modules_vue_loader_lib_index_js_vue_loader_options_Categories_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_0__["default"]); 
+/* harmony import */ var _node_modules_babel_loader_lib_index_js_ref_4_0_node_modules_vue_loader_lib_index_js_vue_loader_options_Authors_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! -!../../../node_modules/babel-loader/lib??ref--4-0!../../../node_modules/vue-loader/lib??vue-loader-options!./Authors.vue?vue&type=script&lang=js& */ "./node_modules/babel-loader/lib/index.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/views/Authors.vue?vue&type=script&lang=js&");
+/* empty/unused harmony star reexport */ /* harmony default export */ __webpack_exports__["default"] = (_node_modules_babel_loader_lib_index_js_ref_4_0_node_modules_vue_loader_lib_index_js_vue_loader_options_Authors_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_0__["default"]); 
 
 /***/ }),
 
-/***/ "./resources/js/views/Categories.vue?vue&type=template&id=53f0967b&":
-/*!**************************************************************************!*\
-  !*** ./resources/js/views/Categories.vue?vue&type=template&id=53f0967b& ***!
-  \**************************************************************************/
+/***/ "./resources/js/views/Authors.vue?vue&type=template&id=46af4079&":
+/*!***********************************************************************!*\
+  !*** ./resources/js/views/Authors.vue?vue&type=template&id=46af4079& ***!
+  \***********************************************************************/
 /*! exports provided: render, staticRenderFns */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
-/* harmony import */ var _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_Categories_vue_vue_type_template_id_53f0967b___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! -!../../../node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!../../../node_modules/vue-loader/lib??vue-loader-options!./Categories.vue?vue&type=template&id=53f0967b& */ "./node_modules/vue-loader/lib/loaders/templateLoader.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/views/Categories.vue?vue&type=template&id=53f0967b&");
-/* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "render", function() { return _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_Categories_vue_vue_type_template_id_53f0967b___WEBPACK_IMPORTED_MODULE_0__["render"]; });
+/* harmony import */ var _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_Authors_vue_vue_type_template_id_46af4079___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! -!../../../node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!../../../node_modules/vue-loader/lib??vue-loader-options!./Authors.vue?vue&type=template&id=46af4079& */ "./node_modules/vue-loader/lib/loaders/templateLoader.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/views/Authors.vue?vue&type=template&id=46af4079&");
+/* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "render", function() { return _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_Authors_vue_vue_type_template_id_46af4079___WEBPACK_IMPORTED_MODULE_0__["render"]; });
 
-/* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "staticRenderFns", function() { return _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_Categories_vue_vue_type_template_id_53f0967b___WEBPACK_IMPORTED_MODULE_0__["staticRenderFns"]; });
+/* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "staticRenderFns", function() { return _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_Authors_vue_vue_type_template_id_46af4079___WEBPACK_IMPORTED_MODULE_0__["staticRenderFns"]; });
 
 
 
