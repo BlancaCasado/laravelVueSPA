@@ -19,26 +19,28 @@ Route::group(['prefix' => 'auth'], function () {
 
     Route::group(['middleware' => 'auth:api'], function () {
         Route::get('logout', 'AuthController@logout');
+        Route::get('profile', 'AuthController@profile');
     });
 });
 
-Route::group(['prefix' => 'user'], function () {
-    Route::group(['middleware' => 'auth:api'], function () {
-        Route::post('edit-category', function () {
+Route::group(['prefix' => 'user', 'middleware' => 'auth:api'], function () {
+    Route::group(['middleware' => 'scope:user'], function () {
+        Route::get('/user-scope', function () {
             return response()->json([
-                'message' => 'Admin access',
+                'message' => 'Los usuarios pueden acceder',
                 'status_code' => 200
-              ], 200);
-        })->middleware('scope:do_anything');
-
-        Route::post('create-category', function () {
-            return response()->json([
-                'message' => 'Everyone access',
-                'status_code' => 200
-              ], 200);
-        })->middleware('scope:do_anything,can_create');
-       
+            ], 200);
+        });
     });
+
+    Route::group(['middleware' => 'scope:administrator'], function () {
+        Route::get('/admin-scope', function () {
+            return response()->json([
+                'message' => 'El administrador pueden acceder',
+                'status_code' => 200
+            ], 200);
+        });
+    });    
 });
 
 Route::resource('categories', 'CategoryController');

@@ -28,7 +28,7 @@
               <td>#</td>
               <td>Nombre</td>
               <td>Imagen</td>
-              <td>Acciones</td>
+              <td v-show="$store.state.profile.role === 'administrator'">Acciones</td>
             </tr>
           </thead>
           <tbody>
@@ -38,7 +38,7 @@
               <td>
                 <img :src="`${$store.state.serverPath}/storage/${category.image}`" :alt="category.name" class="table-image" />
               </td>
-              <td>
+              <td v-show="$store.state.profile.role === 'administrator'">
                 <button class="btn btn-primary btn-sm" v-on:click="editCategory(category)">
                   <span class="fa fa-edit"></span>
                 </button>

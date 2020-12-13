@@ -555,7 +555,32 @@ var render = function() {
         _vm._v(" "),
         _c("div", { staticClass: "card-body" }, [
           _c("table", { staticClass: "table" }, [
-            _vm._m(1),
+            _c("thead", [
+              _c("tr", [
+                _c("td", [_vm._v("#")]),
+                _vm._v(" "),
+                _c("td", [_vm._v("Nombre")]),
+                _vm._v(" "),
+                _c("td", [_vm._v("Imagen")]),
+                _vm._v(" "),
+                _c(
+                  "td",
+                  {
+                    directives: [
+                      {
+                        name: "show",
+                        rawName: "v-show",
+                        value:
+                          _vm.$store.state.profile.role === "administrator",
+                        expression:
+                          "$store.state.profile.role === 'administrator'"
+                      }
+                    ]
+                  },
+                  [_vm._v("Acciones")]
+                )
+              ])
+            ]),
             _vm._v(" "),
             _c(
               "tbody",
@@ -578,33 +603,48 @@ var render = function() {
                     })
                   ]),
                   _vm._v(" "),
-                  _c("td", [
-                    _c(
-                      "button",
-                      {
-                        staticClass: "btn btn-primary btn-sm",
-                        on: {
-                          click: function($event) {
-                            return _vm.editCategory(category)
-                          }
+                  _c(
+                    "td",
+                    {
+                      directives: [
+                        {
+                          name: "show",
+                          rawName: "v-show",
+                          value:
+                            _vm.$store.state.profile.role === "administrator",
+                          expression:
+                            "$store.state.profile.role === 'administrator'"
                         }
-                      },
-                      [_c("span", { staticClass: "fa fa-edit" })]
-                    ),
-                    _vm._v(" "),
-                    _c(
-                      "button",
-                      {
-                        staticClass: "btn btn-danger btn-sm",
-                        on: {
-                          click: function($event) {
-                            return _vm.deleteCategory(category)
+                      ]
+                    },
+                    [
+                      _c(
+                        "button",
+                        {
+                          staticClass: "btn btn-primary btn-sm",
+                          on: {
+                            click: function($event) {
+                              return _vm.editCategory(category)
+                            }
                           }
-                        }
-                      },
-                      [_c("span", { staticClass: "fa fa-trash" })]
-                    )
-                  ])
+                        },
+                        [_c("span", { staticClass: "fa fa-edit" })]
+                      ),
+                      _vm._v(" "),
+                      _c(
+                        "button",
+                        {
+                          staticClass: "btn btn-danger btn-sm",
+                          on: {
+                            click: function($event) {
+                              return _vm.deleteCategory(category)
+                            }
+                          }
+                        },
+                        [_c("span", { staticClass: "fa fa-trash" })]
+                      )
+                    ]
+                  )
                 ])
               }),
               0
@@ -894,22 +934,6 @@ var staticRenderFns = [
     return _c("span", [
       _c("i", { staticClass: "fas fa-chart-area" }),
       _vm._v("\n        Categorias menú\n      ")
-    ])
-  },
-  function() {
-    var _vm = this
-    var _h = _vm.$createElement
-    var _c = _vm._self._c || _h
-    return _c("thead", [
-      _c("tr", [
-        _c("td", [_vm._v("#")]),
-        _vm._v(" "),
-        _c("td", [_vm._v("Nombre")]),
-        _vm._v(" "),
-        _c("td", [_vm._v("Imagen")]),
-        _vm._v(" "),
-        _c("td", [_vm._v("Acciones")])
-      ])
     ])
   }
 ]

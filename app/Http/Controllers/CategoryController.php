@@ -109,7 +109,7 @@ class CategoryController extends Controller
     } else {
       Storage::delete($path);
       return response()->json([
-        'message' => 'Some error occurred, Please try agian!',
+        'message' => 'Ha ocurrido un error prueba de nuevo',
         'status_code' => 500
       ], 500);
     }
@@ -127,12 +127,12 @@ class CategoryController extends Controller
       Storage::delete($category->image);
 
       return response()->json([
-        'message' => 'Category deleted successfully!',
+        'message' => 'Categoría borrada correctamente',
         'status_code' => 200
       ], 200);
     } else {
       return response()->json([
-        'message' => 'Some error occurred, please try again',
+        'message' => 'Ha ocurrido un error prueba de nuevo',
         'status_code' => 500
       ], 500);
     }

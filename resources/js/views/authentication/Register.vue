@@ -48,7 +48,7 @@
                     class="form-control"
                     placeholder="Password"
                     />
-                  <label for="password">Password</label>
+                  <label for="password">Contraseña</label>
                   <div class="invalid-feedback" v-if="errors.password">{{errors.password[0]}}</div>
                 </div>
               </div>

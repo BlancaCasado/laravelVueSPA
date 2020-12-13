@@ -1,6 +1,6 @@
 import {http, httpFile} from './http_service';
 import jwt from 'jsonwebtoken';
-// import store from '../store';
+import store from '../store';
 
 export function register(user) {
     return http().post('/auth/register', user);
@@ -20,6 +20,7 @@ export function login(user) {
 function setToken(user) {
     const token = jwt.sign({ user: user }, 'laravelvuespajsonwebtoken');
     localStorage.setItem('laravel-vue-spa-token', token);
+    store.dispatch('authenticate', user.user);
 }
 
 export function isLoggedIn() {
@@ -40,6 +41,10 @@ export function getAccessToken() {
 
     const tokenData = jwt.decode(token);
     return tokenData.user.access_token;
+}
+
+export function getProfile() {
+    return http().get('/auth/profile');
 }
 
 // export function login(user) {

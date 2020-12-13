@@ -50,9 +50,9 @@ class AuthController extends Controller
     $user = $request->user();
 
     if ($user->role == 'administrator') {
-      $tokenData = $user->createToken('Personal Access Token', ['do_anything']);
+      $tokenData = $user->createToken('Personal Access Token', ['administrator']);
     } else {
-      $tokenData = $user->createToken('Personal Access Token', ['can_create']);
+      $tokenData = $user->createToken('Personal Access Token', ['user']);
     }
 
     $token = $tokenData->token;
@@ -85,6 +85,17 @@ class AuthController extends Controller
       'message' => 'Deslogueado correctamente',
       'status_code' => 200
     ], 200);
+  }
+
+  public function profile(Request $request) {
+    if ($request->user()) {
+        return response()->json($request->user(), 200);
+    }
+
+    return response()->json([
+        'message' => 'Not loggedin',
+        'status_code' => 500
+    ], 500);
   }
 
 }

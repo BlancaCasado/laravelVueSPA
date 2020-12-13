@@ -1,8 +1,9 @@
 <!-- Header.vue -->
 <template>
-  <nav class="sb-topnav navbar navbar-expand navbar-dark bg-light">
-    <a class="navbar-brand" href="index.html">
-      <img src="storage\global_images\core-img\logo.png" width="175px" alt="" />
+  <nav class="sb-topnav navbar navbar-expand navbar-light" style="background-color: #9b9b9b;">
+    <a class="navbar-brand font-italic" href="#">
+      <router-link to="/home"><img src="storage\global_images\core-img\logo.png" width="175px" alt="" /></router-link>
+      {{$store.state.profile.name}}
     </a>
     <button
       class="btn btn-link btn-sm order-1 order-lg-0"
